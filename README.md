@@ -12,7 +12,7 @@ Delete your Laravel project's logs files by running a command.
 You can install the package via composer:
 
 ```bash
-composer require alibori/laravel-logs-cleaner
+composer require alibori/laravel-logs-cleaner --dev
 ```
 
 You can publish the config file with:
