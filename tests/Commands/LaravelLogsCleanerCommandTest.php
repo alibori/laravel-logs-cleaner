@@ -37,6 +37,9 @@ it('command deletes a specific log file', function () {
 
     // Assert that the log file was not deleted
     $this->assertFileExists(storage_path('logs/custom.log'));
+
+    // Clean up
+    unlink(storage_path('logs/custom.log'));
 });
 
 it('command delete logs excluding subdirectories', function () {
@@ -69,6 +72,19 @@ it('command delete logs excluding subdirectories', function () {
 });
 
 it('command does not delete logs when no logs are found', function () {
+    // Clear the logs directory
+    if (file_exists(storage_path('logs/laravel.log'))) {
+        unlink(storage_path('logs/laravel.log'));
+    }
+
+    if (file_exists(storage_path('logs/custom.log'))) {
+        unlink(storage_path('logs/custom.log'));
+    }
+
+    if (is_dir(storage_path('logs/custom'))) {
+        rmdir(storage_path('logs/custom'));
+    }
+
     $this->artisan('logs:clean')
         ->expectsOutput('No logs found to delete!');
 });
