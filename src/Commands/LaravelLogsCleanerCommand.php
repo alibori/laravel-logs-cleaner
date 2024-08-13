@@ -10,8 +10,9 @@ class LaravelLogsCleanerCommand extends Command
     public $signature = 'logs:clean {--force : Delete all log files without confirmation}';
 
     public $description = 'Command to delete logs';
+
     /**
-     * @var array<string> $directories
+     * @var array<string>
      */
     private array $directories;
 
@@ -30,7 +31,7 @@ class LaravelLogsCleanerCommand extends Command
                 // Get substring after the last logs/ in the directory path
                 $directory_name = substr($directory, strrpos($directory, '/') + 1);
 
-                if (in_array($directory_name, (array)config('logs-cleaner.exclude_subdirectories', []))) {
+                if (in_array($directory_name, (array) config('logs-cleaner.exclude_subdirectories', []))) {
                     continue;
                 }
 
